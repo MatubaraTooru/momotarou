@@ -21,7 +21,7 @@ public class Restart : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            sumomo.transform.position = new Vector3(0, 6, 0);
+            sumomo.transform.position = new Vector3(0, 3, 0);
         }
     }
 }
