@@ -4,6 +4,9 @@ using UnityEngine;
 using System.IO;
 using System;
 
+/// <summary>
+/// ハイスコアの更新をするためのクラス
+/// </summary>
 public static class HighScoreSave
 {
     /// <summary>
