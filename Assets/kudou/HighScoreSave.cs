@@ -45,7 +45,7 @@ public static class HighScoreSave
         catch
         {
             Debug.LogWarning("データがありません。");
-            return data = (T)(object)0;
+            return data = (T)(object)999;
         }
     }
 }

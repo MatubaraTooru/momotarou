@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 731363804142349013}
   - component: {fileID: 5989848731720201847}
   - component: {fileID: -3624126770210271469}
+  - component: {fileID: 6489829679961189035}
   m_Layer: 0
   m_Name: scaffold
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,3 +124,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &6489829679961189035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6901701061446671468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9698370272108bc4488b6a073698cb98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

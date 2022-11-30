@@ -5,10 +5,12 @@ using UnityEngine;
 public class Restart : MonoBehaviour
 {
     GameObject sumomo;
+    Vector3 _basePosition;
     // Start is called before the first frame update
     void Start()
     {
-        sumomo = GameObject.FindGameObjectWithTag("Player");
+        sumomo = GameObject.FindGameObjectWithTag("momo");
+        _basePosition = sumomo.transform.position;
     }
 
     // Update is called once per frame
@@ -19,9 +21,9 @@ public class Restart : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "momo")
         {
-            sumomo.transform.position = new Vector3(0, 3, 0);
+            sumomo.transform.position = _basePosition;
         }
     }
 }

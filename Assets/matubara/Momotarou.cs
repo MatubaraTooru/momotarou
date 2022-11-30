@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 
@@ -24,9 +23,26 @@ public class Momotarou : MonoBehaviour
         Move();
         Debug.Log(_rb.velocity.magnitude);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.collider.CompareTag(_walltag))
+    //    {
+    //        _moveDirection = -1 * _moveDirection;
+    //        if (_flip)
+    //        {
+    //            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    //            _flip = false;
+    //        }
+    //        else
+    //        {
+    //            transform.localScale = new Vector3(-1 * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+    //            _flip = true;
+    //        }
+    //    }
+    //}
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.collider.CompareTag(_walltag))
+        if (collision.CompareTag(_walltag))
         {
             _moveDirection = -1 * _moveDirection;
             if (_flip)
@@ -40,10 +56,10 @@ public class Momotarou : MonoBehaviour
                 _flip = true;
             }
         }
-
-        if(collision.collider.CompareTag(_animaltag))
+        if (collision.CompareTag(_animaltag))
         {
             AnimalCount++;
+            Destroy(collision.gameObject);
         }
     }
     private void Move()
@@ -52,7 +68,7 @@ public class Momotarou : MonoBehaviour
         velo = _moveDirection.normalized * _moveSpeed;
         velo.y = _rb.velocity.y;
         _rb.velocity = velo;
-        if (_rb.velocity.magnitude < 3.1)
+        if (_rb.velocity.magnitude < 3)
         {
             _animator.enabled = false;
         }
