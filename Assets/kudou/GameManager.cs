@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (isResult)
         {
+            _nowScore = _timer;
             _highScoreText.text = $"{_highScore.ToString("F2")}";
             _nowScoreText.text = $"{_nowScore.ToString("F2")}";
             if(_nowScore == _highScore)
