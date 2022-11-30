@@ -19,8 +19,8 @@ public class GameManager : MonoBehaviour
     
     public Action OnReset { get => Reset; set => Reset = value; }
 
-    [SerializeField]float _nowScore;
-    [SerializeField]float _highScore;
+    float _nowScore;
+    float _highScore;
 
     HighScore scoreSave = new HighScore();
 
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField,Header("HighScoreの数字が変わる速度")] float scoreChangeSpeed;
 
-    [SerializeField,Header("HighScoreTextについているAnimator")] Animator _textAnim;
+    Animator _textAnim = default;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             _nowScoreText.text = $"{_nowScore.ToString("F2")}";
             if(_nowScore == _highScore)
             {
+                _textAnim = GameObject.Find("HighScoreText").GetComponent<Animator>();
                 //DoTweenでハイスコアが変わり終わった時ハイスコアのテキストのサイズをアニメーションで変える
                 StartCoroutine(HighScoreSize());
             }
