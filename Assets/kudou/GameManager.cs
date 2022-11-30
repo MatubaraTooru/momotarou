@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
         scoreSave = HighScoreSave.OnLoad(scoreSave);
         _timer = 0;
         _highScore = scoreSave._score;
-        isResult = true;
+        
     }
 
     // Update is called once per frame
@@ -68,8 +68,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void NewHighScore()
-    {   
-        if(_nowScore < _highScore)
+    {
+        isResult = true;
+        if (_nowScore < _highScore)
         {
             scoreSave._score = _nowScore;
             HighScoreSave.OnSave(scoreSave);
