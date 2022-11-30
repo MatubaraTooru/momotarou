@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
     event Action Reset;
     float _timer;
     [SerializeField] Text _timerText;
@@ -13,21 +12,11 @@ public class GameManager : MonoBehaviour
     public bool IsGame { get => isGame; set => isGame = value; }
     public Action OnReset { get => Reset; set => Reset = value; }
 
-    private void Awake()
-    {
-        if (Instance)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
+    
     // Start is called before the first frame update
     void Start()
     {
+        _timer = 0;
         
     }
 

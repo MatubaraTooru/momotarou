@@ -7,11 +7,14 @@ public class GameOverJuge : MonoBehaviour
     int teamNum;
 
     [SerializeField] string _charaTagName;
-    bool isGameOver;
+    
+    [SerializeField,Header("GameOveréûÇ…èoÇ∑Canvas")] GameObject _gameOverCanvas;
+    [SerializeField, Header("GameClearéûÇ…èoÇ∑Canvas")] GameObject _gameClearCanvas;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _gameOverCanvas.SetActive(false);
+        _gameClearCanvas.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,11 +37,13 @@ public class GameOverJuge : MonoBehaviour
     {
         if (teamNum == 3)
         {
-            isGameOver = true;
+            
+            _gameOverCanvas.SetActive(true);
         }
         else
         {
-            isGameOver = false;
+            
+            _gameClearCanvas.SetActive(true);
         }
     }
 }
