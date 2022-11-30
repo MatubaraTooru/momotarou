@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class GameOverJuge : MonoBehaviour
 {
     int teamNum;
 
-    [SerializeField] string _charaTagName;
+    [SerializeField,Header("桃太郎オブジェクトについているTag")] string _charaTagName;
     
     [SerializeField,Header("GameOver時に出すCanvas")] GameObject _gameOverCanvas;
     [SerializeField, Header("GameClear時に出すCanvas")] GameObject _gameClearCanvas;
@@ -28,19 +29,18 @@ public class GameOverJuge : MonoBehaviour
             if (collision.gameObject.GetComponent<Momotarou>() != null)
             {
                 teamNum = collision.gameObject.GetComponent<Momotarou>().AnimalCount;
-                TeamCompleteJuge();
-                FindObjectOfType<GameManager>().NewHighScore();
+                TeamCompleteJuge();　//トリ・サル・イヌがそろっているかの判定を行う  
             }
         }
     }
     void TeamCompleteJuge()
     {
-        if (teamNum == 3)
+        if (teamNum == 3)　//ゲームクリアのキャンバス表示をする(リザルト画面)
         {
             _gameClearCanvas.SetActive(true);
-
+            FindObjectOfType<GameManager>().NewHighScore();
         }
-        else
+        else　//ゲームオーバーのキャンバス表示をする
         {
             _gameOverCanvas.SetActive(true);
         }
