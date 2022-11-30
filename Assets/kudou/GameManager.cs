@@ -19,24 +19,24 @@ public class GameManager : MonoBehaviour
     
     public Action OnReset { get => Reset; set => Reset = value; }
 
-    [SerializeField]float _nowScore;
-    [SerializeField]float _highScore;
+    float _nowScore;
+    float _highScore;
 
     HighScore scoreSave = new HighScore();
 
     [SerializeField] Text _highScoreText;
     [SerializeField] Text _nowScoreText;
 
-    [SerializeField] float scoreChangeSpeed;
+    [SerializeField,Header("HighScoreの数字が変わる速度")] float scoreChangeSpeed;
 
-    [SerializeField] Animator _textAnim;
+    Animator _textAnim = default;
     // Start is called before the first frame update
     void Start()
     {
         scoreSave = HighScoreSave.OnLoad(scoreSave);
-        _timer = 0;
+        _timer = 0;　
         _highScore = scoreSave._score;
-        isResult = true;
+        
     }
 
     // Update is called once per frame
@@ -44,10 +44,13 @@ public class GameManager : MonoBehaviour
     {
         if (isResult)
         {
+            _nowScore = _timer;
             _highScoreText.text = $"{_highScore.ToString("F2")}";
             _nowScoreText.text = $"{_nowScore.ToString("F2")}";
             if(_nowScore == _highScore)
             {
+                _textAnim = GameObject.Find("HighScoreText").GetComponent<Animator>();
+                //DoTweenでハイスコアが変わり終わった時ハイスコアのテキストのサイズをアニメーションで変える
                 StartCoroutine(HighScoreSize());
             }
         }
@@ -60,15 +63,17 @@ public class GameManager : MonoBehaviour
 
     public void DownResetButton()
     {
+        //Resetの中身が空じゃないときＲｅｓｅｔのデリゲートを呼ぶ
         if (Reset != null)
         {
             Reset.Invoke();
         }
     }
 
-    public void NewHighScore()
-    {   
-        if(_nowScore < _highScore)
+    public void NewHighScore() //リザルト画面を表示した時に行う
+    {
+        isResult = true;
+        if (_nowScore < _highScore)
         {
             scoreSave._score = _nowScore;
             HighScoreSave.OnSave(scoreSave);
@@ -76,7 +81,7 @@ public class GameManager : MonoBehaviour
             ScoreChangeValue();
         }
     }
-
+    //スコアが更新した時にハイスコアのテキスト表示上で徐々に変えていく
     void ScoreChangeValue()
     {
         DOTween.To(() => _highScore, x => _highScore = x, _nowScore, scoreChangeSpeed);

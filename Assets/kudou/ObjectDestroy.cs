@@ -14,7 +14,7 @@ public class ObjectDestroy : MonoBehaviour
     {
         FindObjectOfType<GameManager>().OnReset -= ObjectDestroyON;
     }
-    void ObjectDestroyON()
+    void ObjectDestroyON() //リセットボタンを押すとオブジェクトが消えます
     {
         Destroy(this.gameObject);
     }
