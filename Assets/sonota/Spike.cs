@@ -6,6 +6,7 @@ public class Spike : MonoBehaviour
 {
     [SerializeField] GameObject _spike;
     [SerializeField] float _cooltime;
+    [SerializeField] Transform _muzzle;
     float _time;
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,7 @@ public class Spike : MonoBehaviour
             _time += Time.deltaTime;
             if(_time > _cooltime)
             {
-                Instantiate(_spike, this.transform.position, this.transform.rotation);
+                Instantiate(_spike, _muzzle.position, this.transform.rotation);
                 _time = 0;
             }
         }
