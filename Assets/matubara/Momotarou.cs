@@ -6,6 +6,8 @@ using UnityEngine;
 public class Momotarou : MonoBehaviour
 {
     [SerializeField, Header("桃太郎の移動スピード")] float _moveSpeed;
+    [SerializeField, Header("壁のタグ")] string _walltag;
+    [SerializeField, Header("動物たちのタグ")] string _animaltag;
     Rigidbody2D _rb;
     Vector2 _moveDirection = Vector2.right;
     public int AnimalCount { get; private set; } = 0;
@@ -19,11 +21,11 @@ public class Momotarou : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Wall"))
+        if (collision.collider.CompareTag(_walltag))
         {
             _moveDirection = -1 * _moveDirection;
         }
-        else if(collision.collider.CompareTag("Animal"))
+        else if(collision.collider.CompareTag(_animaltag))
         {
             AnimalCount++;
         }
