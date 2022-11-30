@@ -23,11 +23,11 @@ public class GameOverJuge : MonoBehaviour
     {
         if(collision.gameObject.CompareTag(_charaTagName))
         {
-            //if (collision.gameObject.GetComponent<>() != null)
-            //{
-            //    teamNum = collision.gameObject.GetComponent<>();
-            //    TeamCompleteJuge();
-            //}
+            if (collision.gameObject.GetComponent<Momotarou>() != null)
+            {
+                teamNum = collision.gameObject.GetComponent<Momotarou>().AnimalCount;
+                TeamCompleteJuge();
+            }
         }
     }
     void TeamCompleteJuge()
