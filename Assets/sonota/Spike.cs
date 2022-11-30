@@ -17,7 +17,7 @@ public class Spike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("Spike").Length <= 0)
+        if(GameObject.FindGameObjectsWithTag("Spike").Length <= 9)
         {
             _time += Time.deltaTime;
             if(_time > _cooltime)
