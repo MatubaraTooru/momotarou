@@ -30,6 +30,7 @@ public class GameOverJuge : MonoBehaviour
             {
                 teamNum = collision.gameObject.GetComponent<Momotarou>().AnimalCount;
                 TeamCompleteJuge();
+                FindObjectOfType<GameManager>().NewHighScore();
             }
         }
     }
