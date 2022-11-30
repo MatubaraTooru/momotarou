@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     float _timer;
     private void Awake()
     {
-        //FindObjectOfType<GameManager>().OnReset += Inkrefill;
+        FindObjectOfType<GameManager>().OnReset += Inkrefill;
     }
     void Start()
     {
